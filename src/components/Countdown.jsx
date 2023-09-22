@@ -8,10 +8,9 @@ const Countdown = () => {
 
   // Start the countdown timer when isRunning becomes true
   useEffect(() => {
-    console.log("count",count);   
     if (isRunning && !isPaused && count > 0) {
       const interval = setInterval(() => {
-        setCount((prev) => prev - 1);
+        setCount(count - 1);
       }, 1000);
 
       // Clear the interval when the component unmounts or when isRunning becomes false
@@ -21,7 +20,7 @@ const Countdown = () => {
   }, [count, isPaused, isRunning]);
 
   // Handle the Countdown/Reset click
-  const handleCountdownClick = () => {
+  const handleBtnClick = () => {
     if (isRunning) {
       // If running, reset the countdown
       setIsRunning(false);
@@ -34,10 +33,7 @@ const Countdown = () => {
 
   // Pause the countdown when the mouse enters the countdown area
   const handleMouseEnter = () => {
-    if (count < 10) {
-      // For first click, ignore the mouseHover
       setIsPaused(true);
-    }
   };
 
   // Resume the countdown when the mouse leaves the countdown area
@@ -46,15 +42,17 @@ const Countdown = () => {
   };
 
   return (
-    <div
+    <>
+    <h1>Click to Start Countdown</h1>
+    <div className="countDown"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={handleCountdownClick}
+      onClick={handleBtnClick}
     >
-      
+    
       {isRunning ? (
         isPaused && count > 0 ? (
-          <button>Paused...</button>
+          <button className="pausedBtn">Paused...</button>
         ) : (
           <button>{count}</button>
         )
@@ -62,6 +60,7 @@ const Countdown = () => {
         <button>Start timer</button>
       )}
     </div>
+    </>
   );
 };
 

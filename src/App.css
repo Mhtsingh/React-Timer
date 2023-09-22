@@ -8,4 +8,9 @@
 .card {
   padding: 2em;
 }
-
+.pausedBtn{
+  background-color: #D83F31;
+}
+.countDown{
+  display: contents;
+}
